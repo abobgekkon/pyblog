@@ -1,0 +1,15 @@
+{% extends "layout/basic.html" %}
+{% block content %}
+     <h1 class="title">Список статей:</h1>
+    {% for post in posts %}
+    <div>
+        <h2>
+            <a href="{{ post.get_absolute_url }}">
+                {{post.title}}</a>
+        </h2>
+        <p>{{ post.body|truncatewords:30|safe|linebreaksbr }}</p>
+        <p class="date">Опубликовано {{ post.publish }}</p>
+    </div>
+    {% endfor %}
+    {% include "pagination.html" %}
+{% endblock %}

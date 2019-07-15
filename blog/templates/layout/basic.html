@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type"
+        content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+        <title>{% block title %}Главная{% endblock %} - ABOBGEKKON</title>
+    </head>
+    <body>
+        <div class="header">
+            <h2 id="site_name">ABOBGEKKON</h2>
+            <p>IT-блог от новичка для новичков</p>
+        </div>
+        <div class="container">
+            <div class="left">
+                <nav>
+                <a href="{% url 'blog:main' %}">Главная</a>
+                {% for rubric in rubrics %}
+                <a href="{% url 'blog:by_rubric' rubric.pk %}">{{rubric.name}}</a>
+                {% endfor %}
+                </nav>
+            </div>
+            <div class="body">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="footer">
+            <p>Контактная информация:
+            <a href="mailto:abobgekkon@gmail.com">abobgekkon@gmail.com</a></p>
+        </div>
+    </body>
+</html>

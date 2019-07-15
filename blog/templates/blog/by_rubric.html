@@ -1,0 +1,14 @@
+{% extends "layout/basic.html" %}
+{% block title %}{{current_rubric.name}}{% endblock %}
+
+{% block content %}
+<h1>Рубрика: {{current_rubric.name}}</h1>
+    {% for post in posts %}
+    <div>
+        <h2><a href="{{ post.get_absolute_url }}">
+                {{post.title}}</a></h2>
+        <p>{{ post.body|truncatewords:30|safe|linebreaksbr }}</p>
+        <p class="date">Опубликовано {{ post.publish }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
